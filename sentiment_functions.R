@@ -4,6 +4,13 @@ calc_sentimentr <- function(x, averaging.function = average_downweighted_zero) {
   sentcalc
 }
 
+calc_sentimentr <- function(x, dictionary) {
+  sentcalc <- get_sentences(x)
+  sentcalc <- sentiment_by(sentcalc, dictionary = dictionary)
+  sentcalc
+}
+
+calc_sentimentr("I am very happy", lexicon::hash_sentiment_jockers_rinker)
 
 clean <- function(train) {
   cleantweets = gsub('http\\S+\\s*',"", train$text)
