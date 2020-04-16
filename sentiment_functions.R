@@ -4,13 +4,22 @@ calc_sentimentr <- function(x, averaging.function = average_downweighted_zero) {
   sentcalc
 }
 
-calc_sentimentr <- function(x, dictionary) {
+calc_sentimentr <- function(x, ...) {
   sentcalc <- get_sentences(x)
-  sentcalc <- sentiment_by(sentcalc, dictionary = dictionary)
+  sentcalc <- sentiment_by(sentcalc, ...)
   sentcalc
 }
 
-calc_sentimentr("I am very happy", lexicon::hash_sentiment_jockers_rinker)
+calc_sentimentr('I am happy',
+                polarity_dt = JR_Slang)
+
+JR <- lexicon::hash_sentiment_jockers_rinker
+ES <- lexicon::emojis_sentiment
+HES <- lexicon::hash_sentiment_emojis
+JR_HES <- rbind(JR,HES)
+Slang <- lexicon::hash_sentiment_slangsd
+JR_Slang <- rbind(lexicon::hash_sentiment_jockers_rinker,lexicon::hash_sentiment_slangsd)
+
 
 clean <- function(train) {
   cleantweets = gsub('http\\S+\\s*',"", train$text)
