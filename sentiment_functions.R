@@ -20,6 +20,16 @@ JR_HES <- rbind(JR,HES)
 Slang <- lexicon::hash_sentiment_slangsd
 JR_Slang <- rbind(lexicon::hash_sentiment_jockers_rinker,lexicon::hash_sentiment_slangsd)
 
+combine_dictionaries <- function(x,y) {
+    combined <- rbind(x,y)
+    o <- order(combined$x)
+    combined <- combined[o,]
+    attr(combined, "sorted") <- "x"
+    combined
+}
+
+JR_HES <- combine_dictionaries(JR, HES)
+JR_Slang <- combine_dictionaries(JR,Slang)
 
 clean <- function(train) {
   cleantweets = gsub('http\\S+\\s*',"", train$text)
