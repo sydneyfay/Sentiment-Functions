@@ -5,6 +5,9 @@ calc_sentimentr <- function(x, averaging.function = average_downweighted_zero) {
 }
 
 calc_sentimentr <- function(x, ...) {
+  
+  #use replace emoji identifier
+  replace_emoji_identifier(x, emoji_dt = lexicon::hash_emojis_identifier)
   sentcalc <- get_sentences(x)
   sentcalc <- sentiment_by(sentcalc, ...)
   sentcalc
