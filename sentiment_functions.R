@@ -1,11 +1,5 @@
 library(sentimentr)
 
-calc_sentimentr <- function(x, averaging.function = average_downweighted_zero) {
-  sentcalc <- get_sentences(x)
-  sentcalc <- sentiment_by(sentcalc, averaging.function = averaging.function)
-  sentcalc
-}
-
 calc_sentimentr <- function(x, ...) {
   
   #use replace emoji identifier
@@ -15,13 +9,6 @@ calc_sentimentr <- function(x, ...) {
   sentcalc
 }
 
-View(lexicon::hash_emojis_identifier)
-JR <- lexicon::hash_sentiment_jockers_rinker
-ES <- lexicon::emojis_sentiment
-HES <- lexicon::hash_sentiment_emojis
-Slang <- lexicon::hash_sentiment_slangsd
-JR_Slang <- rbind(lexicon::hash_sentiment_jockers_rinker,lexicon::hash_sentiment_slangsd)
-
 combine_dictionaries <- function(x,y) {
     combined <- rbind(x,y)
     o <- order(combined$x)
@@ -29,16 +16,6 @@ combine_dictionaries <- function(x,y) {
     attr(combined, "sorted") <- "x"
     combined
 }
-
-JR_HES <- combine_dictionaries(JR, HES)
-JR_Slang <- combine_dictionaries(JR,Slang)
-View(JR_Slang)
-
-sentiment('this is great!lexiconabukxmiodkhvnzfvnvap', polarity_dt = JR_HES)
-
-
-
-
 
 clean <- function(train) {
   cleantweets = gsub('http\\S+\\s*',"", train$text)
@@ -52,8 +29,6 @@ clean <- function(train) {
   cleantweets = gsub('RT\\s?@\\w+', '', cleantweets)
   #cleantweets = gsub('ü\\S+\\s*',"", cleantweets)
 }
-
-
 
 # samples data after stratifying by 'column' to return
 # data containing 'num' samples in each group
