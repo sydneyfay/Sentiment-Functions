@@ -47,3 +47,8 @@ sample_data <- function(d, column = 'X1', num = 100) {
   res <- do.call(rbind, l)
   res 
 }
+
+plotData <- function(df, title) {
+  p <- ggplot(df, aes(category, score, fill = category)) + geom_boxplot() +
+    theme_classic() + theme(legend.position = "none") + ggtitle(title)
+}
