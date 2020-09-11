@@ -30,7 +30,7 @@ s2 <- calc_sentimentr(train$clean, polarity_dt = Slang)
 s3 <- calc_sentimentr(train$clean, polarity_dt = JR_Slang)
 
 s4 <- calc_sentimentr(train$clean, polarity_dt = JR_HES)
-s5 <- calc_sentimentr(train$clean, polarity_dt = HES)?
+s5 <- calc_sentimentr(train$clean, polarity_dt = HES)
   
 df <- data.frame(category = factor(train$sentiment), score = s1$ave_sentiment)
 head(df)

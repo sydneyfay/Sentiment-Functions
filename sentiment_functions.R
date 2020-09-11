@@ -1,4 +1,5 @@
 library(sentimentr)
+library(dplyr)
 
 calc_sentimentr <- function(x, ...) {
   
@@ -9,8 +10,16 @@ calc_sentimentr <- function(x, ...) {
   sentcalc
 }
 
-combine_dictionaries <- function(x,y) {
-    combined <- rbind(x,y)
+combine_dictionaries <- function(d1,d2) {
+  
+   # if words appear in both dictionaries, give preference to 
+   # the second one
+  
+   doubles <- intersect(d1$x, d2$x)
+   d1 <- filter(d1, !(x %in% doubles))
+  
+   combined <- rbind(d1,d2)
+  
     o <- order(combined$x)
     combined <- combined[o,]
     attr(combined, "sorted") <- "x"
