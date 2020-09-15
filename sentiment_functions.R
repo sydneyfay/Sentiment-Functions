@@ -7,12 +7,21 @@ calc_sentimentr <- function(x, ...) {
   sentcalc
 }
 
-combine_dictionaries <- function(x,y) {
-    combined <- rbind(x,y)
-    o <- order(combined$x)
-    combined <- combined[o,]
-    attr(combined, "sorted") <- "x"
-    combined
+combine_dictionaries <- function(d1,d2) {
+  
+  # if words appear in both dictionaries, keep 
+  # the second one
+  doubles <- intersect(d1$x, d2$x)
+  d1 <- filter(d1, !(x %in% doubles))
+  
+  # now combine
+  combined <- rbind(d1,d2)
+  
+  # order and set attributes
+  o <- order(combined$x)
+  combined <- combined[o,]
+  attr(combined, "sorted") <- "x"
+  combined
 }
 
 clean <- function(train) {
