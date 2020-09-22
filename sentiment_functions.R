@@ -1,3 +1,5 @@
+library(dplyr)
+
 calc_sentimentr <- function(x, ...) {
   
   #use replace emoji identifier
