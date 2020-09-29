@@ -30,7 +30,7 @@ df <- data.frame(category = factor(train$sentiment), score = s1$ave_sentiment)
 df2 <- data.frame(category = factor(train$sentiment), score = s2$ave_sentiment)
 df3 <- data.frame(category = factor(train$sentiment), score = s3$ave_sentiment)
 df4 <- data.frame(category = factor(train$sentiment), score = s4$ave_sentiment)
-
+df5 <- data.frame(category = factor(train$sentiment), score = s5$ave_sentiment)
 
 p1 <- plotData(df, "Jockers Rinker")
 p1

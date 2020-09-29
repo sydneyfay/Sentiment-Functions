@@ -10,7 +10,7 @@ response <- kronecker(1:3, rep(1,5))
 x <- 1:15
 x[4] <- 10
 d <- data.frame(x = x, response = factor(response))
-
+View(d)
 # plot the data -- note that the lower the 'x' value,
 #    the lower the response. The prediction is almost
 #    perfect, except for x = 10, which has response = 1;
