@@ -1,9 +1,9 @@
-library(keras)
 library(dplyr)
 library(ggplot2)
 library(purrr)
 library(readr)
-
+library(keras)
+library(tensorflow)
 
 mnist <- dataset_mnist()
 mnist$train$x <- mnist$train$x/255
@@ -32,8 +32,10 @@ model %>%
 
 #Making predictions with the compiled model
 predictions <- predict(model, mnist$test$x)
-head(predictions, 2)
+y <- head(predictions, 2)
+round(y, 2)
 
+mnist$test$y[1:2]
 #Determining the model accuracy
 #Accuracy-loss?
 model %>% 
