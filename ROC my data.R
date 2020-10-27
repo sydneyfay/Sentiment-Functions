@@ -5,9 +5,9 @@ source("sentiment_functions.R")
 source("analyze_sentimentr.R")
 source("nb.R")
 
-ggplot(nb_df, aes(p, sentiments2, color = p)) +
+ggplot(nb_df, aes(as.factor(sentiments2), p, color = sentiments2)) +
   geom_boxplot() +geom_point() + theme_classic() + ggtitle("Naive Bayes")
-m_nb <- multiclass.roc(nb_df$p, nb_df$sentiments2)
+m_nb <- multiclass.roc(nb_df$sentiments2 ~ nb_df$p)
 m_nb
 ####### Jockers Rinker #########
 ggplot(df, aes(category, score, color = category)) +

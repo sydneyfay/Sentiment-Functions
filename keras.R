@@ -74,7 +74,11 @@ text_vectorization %>%
   adapt(movie$text)
 
 get_vocabulary(text_vectorization)
+
 text_vectorization(matrix(movie$text[1], ncol = 1))
+
+m <- matrix(c('Eastern computer science is really fun', 'mathematics Eastern mathematics'))
+
 
 # Starting to layer the model
 input <- layer_input(shape = c(1), dtype = "string")
