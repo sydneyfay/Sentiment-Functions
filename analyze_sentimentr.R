@@ -17,8 +17,8 @@ JR_Slang <- combine_dictionaries(JR,Slang)
 train <- read_csv("data/train.csv")
 
 train$clean <- clean(train)
-g<- get_sentences(train$clean)
-sentiment_by(g)
+#g<- get_sentences(train$clean)
+#sentiment_by(g)
 
 s1 <- calc_sentimentr(train$clean, polarity_dt = JR)
 s2 <- calc_sentimentr(train$clean, polarity_dt = Slang)
@@ -31,6 +31,11 @@ df2 <- data.frame(category = factor(train$sentiment), score = s2$ave_sentiment)
 df3 <- data.frame(category = factor(train$sentiment), score = s3$ave_sentiment)
 df4 <- data.frame(category = factor(train$sentiment), score = s4$ave_sentiment)
 df5 <- data.frame(category = factor(train$sentiment), score = s5$ave_sentiment)
+
+# look at just positive or negative
+df$category[df$category== 2] <- 1
+df$category[df$category== 4] <- 5
+
 
 p1 <- plotData(df, "Jockers Rinker")
 p1
