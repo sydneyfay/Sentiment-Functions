@@ -28,7 +28,7 @@ text_vectorization <- layer_text_vectorization(
   max_tokens = num_words, 
   output_sequence_length = NULL, 
 )
- text_vectorization %>% 
+text_vectorization %>% 
    adapt(train$text)
 
 get_vocabulary(text_vectorization)
@@ -53,14 +53,6 @@ model %>% compile(
 
 sents <- as.array(training$sentiment-1)
 history <- model %>% fit(
-  training$text,
-  sents,
-  epochs = 10,
-  batch_size = NULL,
-  validation_split = 0.2,
-  verbose=1
-)
-model %>% fit(
   training$text,
   sents,
   epochs = 10,

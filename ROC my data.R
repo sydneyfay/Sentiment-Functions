@@ -16,7 +16,7 @@ ggplot(df, aes(category, score, color = category)) +
 m_new <- multiclass.roc(df$category, df$score)
 m_new
 #0.6438
-
+#0.6509 with combined categories
 ######## Slang #########
 ggplot(df2, aes(category, score, color = category)) +
   geom_boxplot() + geom_point() + theme_classic() + ggtitle("Slang")

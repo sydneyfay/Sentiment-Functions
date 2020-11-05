@@ -36,7 +36,20 @@ df5 <- data.frame(category = factor(train$sentiment), score = s5$ave_sentiment)
 df$category[df$category== 2] <- 1
 df$category[df$category== 4] <- 5
 
+df2$category[df2$category== 2] <- 1
+df2$category[df2$category== 4] <- 5
 
+df3$category[df3$category== 2] <- 1
+df3$category[df3$category== 4] <- 5
+
+df4$category[df4$category== 2] <- 1
+df4$category[df4$category== 4] <- 5
+#num.categories <- 3
+#if (num.categories == 3) {
+  
+  # update training data to include 3 categories
+  
+#}
 p1 <- plotData(df, "Jockers Rinker")
 p1
 
