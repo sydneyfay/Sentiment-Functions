@@ -1,5 +1,13 @@
 library(readr)
 library(ggplot2)
+library(sentimentr)
+
+source("sentiment_functions.R")
+
+JR <- lexicon::hash_sentiment_jockers_rinker
+HES <- lexicon::hash_sentiment_emojis
+JR_HES <- combine_dictionaries(JR, HES)
+
 ############################################
 # Chevrolet #
 ############################################
@@ -16,6 +24,12 @@ chevy$manufacturer <- "Chevrolet"
 chevy <- clean(chevy)
 c <- calc_sentimentr(chevy, polarity_dt = JR_HES)
 
+chevy_df <- as.data.frame(rbind(chevrolet1,chevrolet2,chevrolet3,chevrolet4,chevrolet5,chevrolet6,chevrolet7))
+chevy <- clean(chevy_df)
+s <- calc_sentimentr(chevy, polarity_dt = JR_HES)
+chevy_df <- data.frame(chevy_df, sentiment = s)
+save(chevy_df, file = 'chevy_df.RData')
+
 ############################################
 # Dodge #
 ############################################
@@ -31,6 +45,13 @@ dodge <- as.data.frame(rbind(d1,d2,d3,d4,d5,d6,d7))
 dodge$manufacturer <- "Dodge"
 dodge <- clean(dodge)
 d <- calc_sentimentr(dodge, polarity_dt = JR_HES)
+
+dodge_df <- as.data.frame(rbind(d1,d2,d3,d4,d5,d6,d7))
+dodge <- clean(dodge_df)
+s <- calc_sentimentr(dodge, polarity_dt = JR_HES)
+dodge_df <- data.frame(dodge_df, sentiment = s)
+save(dodge_df, file = 'dodge_df.RData')
+
 ############################################
 # Ford #
 ############################################
@@ -47,6 +68,13 @@ ford$manufacturer <- "Ford"
 ford <- clean(ford)
 f <- calc_sentimentr(ford, polarity_dt = JR_HES)
 
+ford_df <- as.data.frame(rbind(f1,f2,f3,f4,f5,f6,f7))
+ford <- clean(ford_df)
+s <- calc_sentimentr(ford, polarity_dt = JR_HES)
+ford_df <- data.frame(ford_df, sentiment = s)
+save(ford_df, file = 'ford_df.RData')
+
+
 ############################################
 # Honda #
 ############################################
@@ -58,10 +86,17 @@ h5<- read_csv("twitter data/10.6/honda_tweets_2020-10-06-16:17:45.RData.csv")
 h6<- read_csv("twitter data/10.8/honda_tweets_2020-10-08-12:09:15.csv")
 h7<- read_csv("twitter data/10.9/honda_tweets_2020-10-09-15:45:37.csv")
 
+
 honda <- as.data.frame(rbind(h1,h2,h3,h4,h5,h6,h7))
 honda$manufacturer <- "Honda"
 honda <- clean(honda)
 h <- calc_sentimentr(honda, polarity_dt = JR_HES)
+
+honda_df <- as.data.frame(rbind(h1,h2,h3,h4,h5,h6,h7))
+honda <- clean(honda_df)
+s <- calc_sentimentr(honda, polarity_dt = JR_HES)
+honda_df <- data.frame(honda_df, sentiment = s)
+save(honda_df, file = 'honda_df.RData')
 
 ############################################
 # Toyota #
@@ -74,10 +109,18 @@ t5<- read_csv("twitter data/10.6/toyota_tweets_2020-10-06-16:18:28.csv")
 t6 <- read_csv("twitter data/10.8/toyota_tweets_2020-10-08-12:10:49.csv")
 t7<- read_csv("twitter data/10.9/toyota_tweets_2020-10-09-15:43:23.csv")
 
+
 toyota <- as.data.frame(rbind(t1,t2,t3,t4,t5,t6,t7))
 toyota$manufacturer <- "Toyota"
 toyota <- clean(toyota)
 t <- calc_sentimentr(toyota, polarity_dt = JR_HES)
+
+toyota_df <- as.data.frame(rbind(t1,t2,t3,t4,t5,t6,t7))
+toyota <- clean(toyota_df)
+s <- calc_sentimentr(toyota, polarity_dt = JR_HES)
+toyota_df <- data.frame(toyota_df, sentiment = s)
+save(toyota_df, file = 'toyota_df.RData')
+
 
 all <- rbind(chevy, dodge, ford,honda,toyota)
 
