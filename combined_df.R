@@ -1,4 +1,5 @@
 library(readr)
+library(ggplot2)
 ############################################
 # Chevrolet #
 ############################################
@@ -11,7 +12,7 @@ chevrolet6 <- read_csv("twitter data/10.23/chevrolet_tweets_2020-10-23-11:52:56.
 chevrolet7<- read_csv("twitter data/10.6/chevrolet_tweets_2020-10-06-16:18:28.RData.csv")
 
 chevy <- as.data.frame(rbind(chevrolet1,chevrolet2,chevrolet3,chevrolet4,chevrolet5,chevrolet6,chevrolet7))
-
+chevy$manufacturer <- "Chevrolet"
 chevy <- clean(chevy)
 c <- calc_sentimentr(chevy, polarity_dt = JR_HES)
 
@@ -27,7 +28,7 @@ d6<- read_csv("twitter data/10.8/dodge_tweets_2020-10-08-12:08:31.csv")
 d7<- read_csv("twitter data/10.9/dodge_tweets_2020-10-09-15:44:58.csv")
 
 dodge <- as.data.frame(rbind(d1,d2,d3,d4,d5,d6,d7))
-
+dodge$manufacturer <- "Dodge"
 dodge <- clean(dodge)
 d <- calc_sentimentr(dodge, polarity_dt = JR_HES)
 ############################################
@@ -42,6 +43,7 @@ f6<- read_csv("twitter data/10.8/fordTweets_2020-10-08-12:11:34.csv")
 f7<- read_csv("twitter data/10.9/fordTweets_2020-10-09-15:46:24.csv")
 
 ford <- as.data.frame(rbind(f1,f2,f3,f4,f5,f6,f7))
+ford$manufacturer <- "Ford"
 ford <- clean(ford)
 f <- calc_sentimentr(ford, polarity_dt = JR_HES)
 
@@ -57,6 +59,7 @@ h6<- read_csv("twitter data/10.8/honda_tweets_2020-10-08-12:09:15.csv")
 h7<- read_csv("twitter data/10.9/honda_tweets_2020-10-09-15:45:37.csv")
 
 honda <- as.data.frame(rbind(h1,h2,h3,h4,h5,h6,h7))
+honda$manufacturer <- "Honda"
 honda <- clean(honda)
 h <- calc_sentimentr(honda, polarity_dt = JR_HES)
 
@@ -72,6 +75,21 @@ t6 <- read_csv("twitter data/10.8/toyota_tweets_2020-10-08-12:10:49.csv")
 t7<- read_csv("twitter data/10.9/toyota_tweets_2020-10-09-15:43:23.csv")
 
 toyota <- as.data.frame(rbind(t1,t2,t3,t4,t5,t6,t7))
+toyota$manufacturer <- "Toyota"
 toyota <- clean(toyota)
 t <- calc_sentimentr(toyota, polarity_dt = JR_HES)
+
+all <- rbind(chevy, dodge, ford,honda,toyota)
+
+################
+# Tweets per day 
+################
+#ggplot()+ geom_bar(aes(x = created_at, fill = manufacturer),data = all) + ylim(0,10)
+ggplot(all, aes(created_at, y = nrow(all), fill = manufacturer)) + geom_bar(position= "stack", stat = "identity") +
+  ylim(0,150000)
+
+
+
+
+
 

@@ -28,7 +28,8 @@ dtmatrix <- (dtmatrix > 0)
 freq <- sort(colSums(dtmatrix), decreasing = TRUE)
 
 #Histogram
-hist(freq, xlim = c(0,600), xlab = "Number of Tweets a Word Appears In")
+hist(freq, xlim = c(0,60), xlab = "Number of Tweets a Word Appears In",
+     breaks = 600)
 
 #Coverting to DF
 DTM_DF <- data.frame(as.matrix(DTM))
